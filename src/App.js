@@ -14,6 +14,11 @@ class App extends Component {
         id: "sff",
         name: "Josh",
         age: 30
+      },
+      {
+        id: "fff",
+        name: "Ruben",
+        age: 35
       }
     ],
     showPersons: false
@@ -95,10 +100,18 @@ class App extends Component {
       style.backgroundColor = "red";
     }
 
+    const classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push("red"); // classes = ['red']
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push("bold"); // classes = ['red', 'bold']
+    }
+
     return (
       <div className="App">
         <h1>Yo! Whats up?</h1>
-        <p>This is Working</p>
+        <p className={classes.join(" ")}>This is Working</p>
         <button style={style} onClick={this.togglePersonsHandler}>
           Toggle Persons
         </button>
