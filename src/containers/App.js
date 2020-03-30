@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Person from "./Person/Person.js";
+import Persons from "../components/Persons/Persons.js";
 
 class App extends Component {
   state = {
@@ -70,42 +70,36 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black"
-      }
-    };
+    // const style = {
+    //   backgroundColor: "green",
+    //   color: "white",
+    //   font: "inherit",
+    //   border: "1px solid blue",
+    //   padding: "8px",
+    //   cursor: "pointer",
+    //   ":hover": {
+    //     backgroundColor: "lightgreen",
+    //     color: "black"
+    //   }
+    // };
 
     let persons = null;
 
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={event => this.nameChangeHandler(event, person.id)}
-              />
-            );
-          })}
+          <Persons
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangeHandler}
+          />
         </div>
       );
-      style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "black"
-      };
+      // style.backgroundColor = "red";
+      // style[":hover"] = {
+      //   backgroundColor: "salmon",
+      //   color: "black"
+      // };
     }
 
     const classes = [];
@@ -120,7 +114,7 @@ class App extends Component {
       <div className="App">
         <h1>Yo! Whats up?</h1>
         <p className={classes.join(" ")}>This is Working</p>
-        <button style={style} onClick={this.togglePersonsHandler}>
+        <button className="button" onClick={this.togglePersonsHandler}>
           Toggle Persons
         </button>
         {persons}
